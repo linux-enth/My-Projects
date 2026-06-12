@@ -1,6 +1,7 @@
 import customtkinter as ctk
 import numpy as np
 import matplotlib.pyplot as plt
+import sys
 
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg,
@@ -162,8 +163,13 @@ class OrbitalApp(ctk.CTk):
             self.on_scroll
         )
 
+        self.protocol("WM_DELETE_WINDOW", self.on_closing)
+
         self.plot_orbital()
 
+    def on_closing(self):
+        self.destroy()
+        sys.exit(0)
 
     def on_scroll(self, event):
 
